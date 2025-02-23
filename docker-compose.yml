@@ -1,0 +1,13 @@
+services:
+  mongo:
+    image: ${MONGODB_IMAGE}
+    container_name: pjmongodb
+    ports:
+      - '${MONGODB_EXPOSED_PORT}:27017'
+    volumes:
+      - './server/src/database/initMongoDb.js:/docker-entrypoint-initdb.d/initMongoDb.js'
+      - mongo-data:/data/db
+    command: ['mongod']
+volumes:
+  mongo-data:
+  letsencrypt:
